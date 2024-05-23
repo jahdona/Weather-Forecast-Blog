@@ -4,32 +4,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Weather Forecast</title>
 </head>
 <body>
     <h1>Weather Forecast Dashboard</h1>
      <div class="container">
+        
         <div class="weather-input">
-            <h3>Enter a City Name</h3>
-            <input type="text" class="city-input" id="city-input">
+            <button class="location-btn">Use Current Location</button>
+            <div class="separator"></div>
+            <h3>Search for a City</h3>
+            <div class="ui-widget">
+            <input type="text" class="city-input" id="city-input"></div>
             <div class="mes"></div>
             <button class="search-btn" id="search-btn">Search</button>
-            <div class="separator"></div>
-            <button class="location-btn">Use Current Location</button>
+            <div class="separatorc"></div>
+            <ul class="searched-cities">
+
+            </ul>
+            
+            
         </div>
         <div class="weather-data">
             <div class="current-weather">
                 <div class="details">
-                    <h2>Michigan (2024-05-21)</h2>
-                    <h4>Temperature: 19.10°C</h4>
-                    <h4>Wind Speed: 4.31 M/S</h4>
-                    <h4>Humidity:  79%</h4>
+                    <h2>_________ (_____ ___ ___)</h2>
+                    <h4>Temperature: __°F</h4>
+                    <h4>Wind Speed: ___ M/S</h4>
+                    <h4>Humidity:  ___%</h4>
                 </div>
-                <div class="icon">
-                    <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
-                    <h4>Moderate Rain</h4>
-                </div>
+               
             </div>
             <div class="days-forecast">
                 <h2>5-Day Forecast</h2>
@@ -69,6 +76,8 @@
             </div>
         </div>
      </div>
+     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
      <script src="./assets/javascript/script.js"></script>
 </body>
 </html>
