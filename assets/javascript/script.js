@@ -64,7 +64,7 @@ function createWeatherCard(cityName,weatherItem,index){
 function getWeatherDetails(cityName, lat,lon){
     storeCity(cityName); 
 
-    const weatherApiUrl=`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKeys}`;
+    const weatherApiUrl=`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKeys}`;
     fetch(weatherApiUrl)
         .then(res=>res.json())
         .then(data=>{
@@ -114,7 +114,7 @@ const getCityCoordinates=()=>{
             return;
         }
     
-        const requestUrl=`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKeys}`;
+        const requestUrl=`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKeys}`;
         fetch(requestUrl).then(res=>res.json()).then(data=>{
             if(!data.length) {
                 //Checking for the input provided if it has some coordinates
