@@ -138,7 +138,7 @@ function getUSerCoordinates(){
         position=>{
 
             const {latitude,longitude}=position.coords;
-            const reverseGeoCodingUrl=`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKeys}`;
+            const reverseGeoCodingUrl=`https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKeys}`;
             fetch(reverseGeoCodingUrl).then(res=>res.json()).then(data=>{
                 const {name }=data[0];
                 getWeatherDetails(name, latitude,longitude);
