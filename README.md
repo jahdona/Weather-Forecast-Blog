@@ -45,7 +45,7 @@ The image below shows the weather app includes a search option, a list of cities
 
 
 ## Link of Deployed Application
- Link: [`Weather Forecast Blog`](https://jahdona.github.io/Kanban-task-board/)
+ Link: [`Weather Forecast Blog`](https://jahdona.github.io/Weather-Forecast-Blog/)
 
 ## Credits
 
