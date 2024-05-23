@@ -53,6 +53,9 @@ h1{
     margin-top: -4px;
     background: #E3F2FD;
 }
+.weather-input h3{
+    text-align: center;
+}
 .weather-input .separatorc{
     height: 1px;
     width: 100%;
@@ -73,6 +76,8 @@ h1{
     background: #475bb7;
     color: #E3F2FD;
     text-align: center;
+    border-radius: 10px;
+    font-size: 1.5rem;
 }
 .weather-input .separatorc::before{
     content:"Cities";
@@ -93,7 +98,7 @@ h1{
     color: #fff;
     background: #5372F0;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 1.7rem;
 
 
 }

@@ -8,9 +8,9 @@ const searchedCitiesList=document.querySelector('.searched-cities');
 //API key for OpenweatherMap API
 
 const apiKeys="2ce24dfe106741fbb9bad674040fece6";
-//get stored cities in localstorage
-let cities=JSON.parse(localStorage.getItem('city')) ||[];
 
+let cities=JSON.parse(localStorage.getItem('city')) ||[];
+//display cities on form everytime the page refreshed
 window.onload=function loadCities()
 {
     for(i=0;i<cities.length;i++){
@@ -19,6 +19,7 @@ window.onload=function loadCities()
         searchedCitiesList.appendChild(list);
     }
 }
+//get stored cities in localstorage and display while search for a city
 function searchedCities(city=[]){
 
 for(i=0;i<city.length;i++){
