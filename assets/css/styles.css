@@ -128,9 +128,9 @@ h1{
     max-width: 120px;
     margin-top: -15px;
 }
-.current-weather .icon h6{
+.current-weather .icon h4{
     margin-top: -10px;
-    text-transform: capitalize;
+    text-align: center;
 }
 .days-forecast h2{
     font-size: 1.5rem;

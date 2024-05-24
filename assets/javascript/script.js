@@ -50,7 +50,7 @@ function createWeatherCard(cityName,weatherItem,index){
         <li class="card">
             <h3>(${dayjs(weatherItem.dt_txt).format('MM-DD-YYYY').split(" ")[0]})</h3>
             <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" alt="weather-icon">
-            <h4>Temperature: ${(((weatherItem.main.temp - 273.15)*1.8)+32).toFixed(2)}°F</h4>
+            <h4>Temp: ${(((weatherItem.main.temp - 273.15)*1.8)+32).toFixed(2)}°F</h4>
             <h4>Wind Speed: ${weatherItem.wind.speed} M/S</h4>
             <h4>Humidity: ${weatherItem.main.humidity} %</h4>
         </li>
@@ -65,7 +65,7 @@ function getWeatherDetails(cityName, lat,lon){
     storeCity(cityName); 
 
     const weatherApiUrl=`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKeys}`;
-    //const weatherApiUrl=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKeys}`
+   
     fetch(weatherApiUrl)
         .then(res=>res.json())
         .then(data=>{
