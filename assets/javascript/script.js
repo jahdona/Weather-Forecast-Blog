@@ -5,6 +5,7 @@ const weatherCardsUl=document.querySelector(".weather-cards");
 const currentWeatherDiv=document.querySelector('.current-weather');
 const locationButton=document.querySelector('.location-btn');
 const searchedCitiesList=document.querySelector('.searched-cities');
+//const listValue=document.querySelector('li');
 //API key for OpenweatherMap API
 
 const apiKeys="2ce24dfe106741fbb9bad674040fece6";
@@ -14,19 +15,33 @@ let cities=JSON.parse(localStorage.getItem('city')) ||[];
 window.onload=function loadCities()
 {
     for(i=0;i<cities.length;i++){
-        const list=document.createElement('li')
+        const list=document.createElement('li');
+        list.setAttribute('data-value',i);
+        list.setAttribute('id',`index${i}`)
         list.textContent=cities[i];
         searchedCitiesList.appendChild(list);
+        getListId(list)
     }
 }
 //get stored cities in localstorage and display while search for a city
 function searchedCities(city=[]){
 
 for(i=0;i<city.length;i++){
-    const list=document.createElement('li')
+    const list=document.createElement('li');
+    list.setAttribute('data-value',i);
+    list.setAttribute('id',`index${i}`)
     list.textContent=city[i];
     searchedCitiesList.appendChild(list);
+    getListId(list)
 }
+}
+//adding eventListener to search citties history
+function getListId(listValue){
+    listValue.addEventListener('click',function(){
+        
+        getCityCoordinates(this.innerText);
+     })
+     
 }
 
 function createWeatherCard(cityName,weatherItem,index){
@@ -69,7 +84,7 @@ function getWeatherDetails(cityName, lat,lon){
     fetch(weatherApiUrl)
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
+           // console.log(data);
             //Filter the forecasts to get only one forecast per day
             const uniqueForecastDays=[];
             const fiveDaysForecast=data.list.filter(forecast=>{
@@ -78,7 +93,7 @@ function getWeatherDetails(cityName, lat,lon){
                     return uniqueForecastDays.push(forecastDate);
                 }
             });
-            console.log(fiveDaysForecast);
+            //console.log(fiveDaysForecast);
             //clearing previous data
             weatherCardsUl.innerHTML="";
             currentWeatherDiv.innerHTML="";
@@ -104,23 +119,28 @@ function getWeatherDetails(cityName, lat,lon){
             alert("An error ocurred while fetching Weather Forecast");
         });
 }
-
-const getCityCoordinates=()=>{
-    //Get user entered city name and remove extra spaces
-
-    const cityName=cityInput.value.trim();
+function getCityInput(){
+    let cityName=cityInput.value.trim();
     if(!cityName)
         {
             //validating the text box for not be empty
             msg.textContent="Search Text Box should not be empty";
             return;
         }
+        else{
+            getCityCoordinates(cityName);
+        }
+       
+}
+
+function getCityCoordinates(cityNam){
+    //Get user entered city name and remove extra spaces
     
-        const requestUrl=`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKeys}`;
+        const requestUrl=`https://api.openweathermap.org/geo/1.0/direct?q=${cityNam}&limit=1&appid=${apiKeys}`;
         fetch(requestUrl).then(res=>res.json()).then(data=>{
             if(!data.length) {
                 //Checking for the input provided if it has some coordinates
-                return alert(`No coordinates found for ${cityName}`);
+                return alert(`No coordinates found for ${cityNam}`);
             }
             //getting the coordinates for the Entered City (latitude, longitude and city name) from the API response
             const {name, lat,lon}=data[0];
@@ -131,7 +151,7 @@ const getCityCoordinates=()=>{
         });
         msg.textContent="";
        
-        storeCity(cityName);
+        storeCity(cityNam);
 }
 //get current user coordinates
 function getUSerCoordinates(){
@@ -165,7 +185,7 @@ function storeCity(cityNames){
       localStorage.setItem('city',JSON.stringify(cities));
       searchedCitiesList.innerHTML="";
       searchedCities(cities);
-      console.log(cities);
+      //console.log(cities);
     }
   
   
@@ -178,5 +198,5 @@ function storeCity(cityNames){
     });
   } );
   
-searchButton.addEventListener("click",getCityCoordinates);
+searchButton.addEventListener("click",getCityInput);
 locationButton.addEventListener("click",getUSerCoordinates);
